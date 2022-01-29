@@ -9,9 +9,21 @@ function onReady() {
     $('#submit-button').on('click', submitForm);   
 }
 
+function updateMonthlyTotal() {
+    let total = 0; // initialize counter variable
+    
+    for(let i of employees){ // loop over employees array
+        total += i.monSalary; // add each employee monthly cost to counter
+    }
+    //update total monthly on DOM
+    $('#mon-total').text(total);
+}
+
 function displayEmployee() {
+    // empty table to avoid duplication
+    $('#table-grossness').empty();
     // loop over employees array
-    for( let i of employees){
+    for( let i of employees){ 
         // append array data into
         $('#table-grossness').append(`<tr><td>${i.firstName}</td><td>${i.lastName}</td><td>${i.id}</td><td>${i.title}</td><td>${i.salary}</td></tr>`)    
     }
@@ -29,8 +41,9 @@ function addEmployee(nameF, nameL, idNum, title, annSalary) {
         id: idNum,
         title: title,
         salary: annSalary,
+        monSalary: annSalary/12,
         }
-    
+        // adds object to employees array
         employees.push(employee);
 }
 
@@ -47,5 +60,5 @@ function submitForm() {
    // append the object info to the table
     displayEmployee();
    // update monthly budget
-    
+    updateMonthlyTotal();
 }
