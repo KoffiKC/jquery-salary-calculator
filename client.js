@@ -2,7 +2,7 @@ console.log("js");
 
 $( document ).ready(onReady)
 
-let employees = [];
+let employeeSalaries = [];
 
 function onReady() {
     console.log('JQ');
@@ -22,45 +22,42 @@ function removeEmployee() {
 function updateMonthlyTotal() {
     let total = 0; // initialize counter variable
     
-    for(let i of employees){ // loop over employees array
-        total += i.monSalary; // add each employee monthly cost to counter
+    for(let salary of employeeSalaries){ // loop over employee salary array
+        total += Math.round(salary/12); // add each employee monthly cost to counter
     }
     //update total monthly on DOM
     $('#mon-total').text(total);
 
-    // // update monthly total element when exceeding amount
-    // if (total > 200000){
-
-    // }
+    // update monthly total element when exceeding amount
+    if (total > 200000){
+        $('p').addClass("red")
+    }
 }
 
-function displayEmployee() {
-    // empty table to avoid duplication
-    $('#table-grossness').empty();
-    // loop over employees array
-    for( let i of employees){ 
-        // append array data into
-        $('#table-grossness').append(`<tr><td>${i.firstName}</td><td>${i.lastName}</td><td>${i.id}</td><td>${i.title}</td><td>${i.salary}</td><td><button id="delete-button">Delete</button></td></tr>`)    
-    }
-    $('#first-name-in').val(""); // empty input fields
+function displayEmployee(nameF, nameL, idNum, title, annSalary) {
+    // append array data into
+    $('#table-grossness').append(`<tr><td>${nameF}</td><td>${nameL}</td><td>${idNum}</td><td>${title}</td><td>${annSalary}</td><td><button id="delete-button">Delete</button></td></tr>`)    
+
+    // empty input fields
+    $('#first-name-in').val(""); 
     $('#last-name-in').val("");
     $('#id-num-in').val("");
     $('#title-in').val("");
     $('#ann-sal-in').val("");
 }
 
-function addEmployee(nameF, nameL, idNum, title, annSalary) {
-        const employee = {
-        firstName: nameF,
-        lastName: nameL,
-        id: idNum,
-        title: title,
-        salary: annSalary,
-        monSalary: annSalary/12,
-        }
-        // adds object to employees array
-        employees.push(employee);
-}
+// function addEmployee(nameF, nameL, idNum, title, annSalary) {
+//         const employee = {
+//         firstName: nameF,
+//         lastName: nameL,
+//         id: idNum,
+//         title: title,
+//         salary: annSalary,
+//         monSalary: annSalary/12,
+//         }
+//         // adds object to employees array
+//         employees.push(employee);
+// }
 
 function submitForm() {
     console.log('Hey it works huh cool');
@@ -70,10 +67,13 @@ function submitForm() {
     let idNum = $('#id-num-in').val();
     let title = $('#title-in').val();
     let annSalary = $('#ann-sal-in').val();
-    addEmployee(nameF, nameL, idNum, title, annSalary); // add employee to employees array
-    console.log(employees); // testing
-    // append the object info to the table
-    displayEmployee();
+
+    // add salary to array for later manipulaton
+    employeeSalaries.push(annSalary);
+    // addEmployee(nameF, nameL, idNum, title, annSalary); // add employee to employees array
+    // console.log(employees); // testing
+    // append input values onto the DOM
+    displayEmployee(nameF, nameL, idNum, title, annSalary);
     // update monthly budget
     updateMonthlyTotal();
     // delete button shenanigans
