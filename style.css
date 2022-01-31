@@ -1,5 +1,6 @@
 table, th, td {
     border: 1 color black;
+    background-color: white;
     border-collapse: collapse;
     padding: 5px;
 }
@@ -8,3 +9,18 @@ table, th, td {
     background-color: red;
 }
 
+button {
+    display: inline-block;
+}
+
+header {
+    background-color: darkgray;
+}
+
+body {
+    background-color: lightgray;
+}
+
+table {
+   
+}
