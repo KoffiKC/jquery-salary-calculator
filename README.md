@@ -1,9 +1,14 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Company Employee Cost Calculator
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+With this App, you can get the total monthly cost of all employees. Simply type in their information and the app will display them on the page, calculate their monthly income and add it to the total monthly cost. If the total monthly cost goes above 20,000 the total cost will turn red indicating that budget cuts are needed!
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+### Dependencies
+
+ * JavaScript
+ * JQuery
+
+ ## Acknowledgments
+
+Special thanks to Prime Digital Academy for teaching me how all this stuff works!
